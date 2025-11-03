@@ -58,9 +58,6 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem "pry-byebug"
 end
 
 group :development do
@@ -68,6 +65,9 @@ group :development do
   gem "web-console"
   gem "annotate"
   gem "letter_opener_web", "~> 3.0"
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "pry-byebug"
 end
 
 group :test do
