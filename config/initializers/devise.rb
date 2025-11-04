@@ -25,16 +25,8 @@ Devise.setup do |config|
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
 
-  client_id = Rails.application.credentials.dig(:google, :GOOGLE_CLIENT_ID)
-  client_secret = Rails.application.credentials.dig(:google, :GOOGLE_CLIENT_SECRET)
-
-  # どの環境でも「値が両方あるときだけ」有効化（production限定にしたければ条件を足す）
-  if client_id.present? && client_secret.present?
-    config.omniauth :google_oauth2, client_id, client_secret,
-                    scope: "email,profile",
-                    prompt: "select_account",
-                    access_type: "offline"
-  else
-    Rails.logger.warn "[Devise] GOOGLE_CLIENT_ID/SECRET 未設定のため Google OAuth をスキップ (env=#{Rails.env})"
-  end
+  # GoogleクライアントIDをDeviseに設定
+  config.omniauth :google_oauth2,
+    Rails.application.credentials.dig(:google, :GOOGLE_CLIENT_ID),
+    Rails.application.credentials.dig(:google, :GOOGLE_CLIENT_SECRET)
 end
