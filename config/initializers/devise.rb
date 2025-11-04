@@ -25,7 +25,7 @@ Devise.setup do |config|
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
 
-  #GoogleクライアントIDをDeviseに設定
+  # GoogleクライアントIDをDeviseに設定
   config.omniauth :google_oauth2,
     Rails.application.credentials.dig(:google, :GOOGLE_CLIENT_ID),
     Rails.application.credentials.dig(:google, :GOOGLE_CLIENT_SECRET)
