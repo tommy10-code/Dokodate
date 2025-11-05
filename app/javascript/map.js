@@ -43,6 +43,7 @@ document.addEventListener("turbo:load", async () => {
 
   // 一度マーカーの情報を削除して、新しくマーカーを描写
   const updateMarkers = (shops) => {
+    console.log(shops);
     clearMarkers();
     (shops || []).forEach(s => {
       const m = createShopMarker(s);
@@ -51,25 +52,32 @@ document.addEventListener("turbo:load", async () => {
   };
 
   // Railsからshopデータを取得,updateMarkersの関数実行
-  const loadShops = (url) =>
+  const loadShops = (url) => {
+    console.log(url);
     fetch(url, { headers: { Accept: "application/json" } })
       .then(r => r.json())
-      .then(updateMarkers)
+      .then(data => {
+        console.log(data);
+        updateMarkers(data);
+      })
       .catch(e => console.error("[shops fetch error]:", e));
-
+  }
   // loadShopsの関数を実行
   loadShops("/shops.json" + window.location.search);
 
-  // このコードも意味も知りたい！現在地マーカーの取得
-  if (navigator.geolocation) {
+  // 現在地マーカーの取得
     navigator.geolocation.getCurrentPosition(
-      pos => new Marker({
+      pos => {
+        console.log(pos)
+        new Marker({
         position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
         map,
         // 旧Markerアイコン指定（AdvancedMarker化は後で対応でもOK）
         icon: { url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png" }
-      }),
-      err => { console.error("位置情報取得失敗:", err);}
+        });
+      },
+      err => {
+        console.error("位置情報取得失敗:", err);
+      }
     );
-  }
 });

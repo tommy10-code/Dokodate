@@ -1,5 +1,3 @@
-console.log('オートコンプリート')
-
 window.initPlacesAutofill = () => {
   const shopTitleInput = document.getElementById('shop_title_autocomplete');
   if (!shopTitleInput) return;
