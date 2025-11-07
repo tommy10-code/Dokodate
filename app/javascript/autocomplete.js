@@ -15,6 +15,8 @@ window.initPlacesAutofill = () => {
 
   autocomplete.addListener('place_changed', () => {
     const place = autocomplete.getPlace();
+    console.log("取得されたplace:", place);
+
     if (!place) return;
     shopTitleInput.value = place.name || "";
 

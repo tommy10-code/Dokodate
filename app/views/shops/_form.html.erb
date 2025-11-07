@@ -41,6 +41,7 @@
   <% end %>
 </div>
 
+<!--これをなくすとオートコンプリートが表示されなくなる-->
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.dig(:google, :GOOGLE_MAPS_API_KEY) %>&libraries=places&callback=initPlacesAutofill">
 </script>
