@@ -10,7 +10,7 @@
           <%= link_to edit_shop_path(@shop), class: "text-2xl" do %>
             ✏️
           <% end %>
-          <%= link_to shop_path(@shop), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか?" }, class: "text-2xl" do %>
+          <%= link_to shop_path(@shop), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか?" }, "data-turbo-frame": "_top", class: "text-2xl" do %>
             🗑️
           <% end %>
         <% end %>

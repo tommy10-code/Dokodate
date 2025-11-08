@@ -5,9 +5,9 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable,
           :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
-  has_many :shops, dependent: :nullify
+  has_many :shops
   has_many :favorites, dependent: :destroy
-  has_many :shops, through: :favorites
+  has_many :favorites_shops, through: :favorites
 
   validates :name, presence: true, on: :create
 
