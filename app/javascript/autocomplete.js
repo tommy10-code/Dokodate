@@ -1,5 +1,6 @@
-window.initPlacesAutofill = () => {
+document.addEventListener("turbo:load", async () => {
   const shopTitleInput = document.getElementById('shop_title_autocomplete');
+  console.log(shopTitleInput);
   if (!shopTitleInput) return;
 
   const autocomplete = new google.maps.places.Autocomplete(shopTitleInput, {
@@ -24,4 +25,4 @@ window.initPlacesAutofill = () => {
     const shopAddressInput = document.getElementById('shop_address');
     if (shopAddressInput) {shopAddressInput.value = address};
   });
-}
+})
