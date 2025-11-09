@@ -1,7 +1,6 @@
-console.log('オートコンプリート')
-
-window.initPlacesAutofill = () => {
+document.addEventListener("turbo:load", async () => {
   const shopTitleInput = document.getElementById('shop_title_autocomplete');
+  console.log(shopTitleInput);
   if (!shopTitleInput) return;
 
   const autocomplete = new google.maps.places.Autocomplete(shopTitleInput, {
@@ -17,6 +16,8 @@ window.initPlacesAutofill = () => {
 
   autocomplete.addListener('place_changed', () => {
     const place = autocomplete.getPlace();
+    console.log("取得されたplace:", place);
+
     if (!place) return;
     shopTitleInput.value = place.name || "";
 
@@ -24,4 +25,4 @@ window.initPlacesAutofill = () => {
     const shopAddressInput = document.getElementById('shop_address');
     if (shopAddressInput) {shopAddressInput.value = address};
   });
-}
+})

@@ -4,7 +4,7 @@ class Shop < ApplicationRecord
 
   belongs_to :user, optional: true
   has_many :favorites, dependent: :destroy
-  has_many :users, through: :favorites
+  has_many :favorites_users, through: :favorites
 
   scope :favorited_by, ->(user_id) {
     joins(:favorites).where(favorites: { user_id: user_id }).distinct

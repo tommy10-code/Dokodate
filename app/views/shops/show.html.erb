@@ -10,7 +10,7 @@
           <%= link_to edit_shop_path(@shop), class: "text-2xl" do %>
             ✏️
           <% end %>
-          <%= link_to shop_path(@shop), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか?" }, class: "text-2xl" do %>
+          <%= link_to shop_path(@shop), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか?" }, "data-turbo-frame": "_top", class: "text-2xl" do %>
             🗑️
           <% end %>
         <% end %>
@@ -78,59 +78,3 @@
   </div>
 
 <% end %>
-
-<!--
-<div id="map" class="h-64 md:h-80 rounded mt-8 max-w-3xl mx-auto p-6 mb-5"></div>
-
-<script>
-  // 名古屋駅をデフォルト中心
-  const NAGOYA = { lat: 35.170915, lng: 136.881537 };
-
-  function initMap() {
-    const el = document.getElementById("map");
-    if (!el) return;
-
-    const map = new google.maps.Map(el, {
-      zoom: 15,
-      center: NAGOYA,
-      mapTypeControl: false,
-      streetViewControl: false
-    });
-
-    // サーバから埋め込み（nil → null）
-    const lat = <%= @shop.latitude || 'null' %>;
-    const lng = <%= @shop.longitude || 'null' %>;
-    const title = "<%= j @shop.title.to_s %>";
-    const address = "<%= j @shop.address.to_s %>";
-
-    // 緯度経度があればそれを使う
-    if (lat && lng) {
-      const pos = { lat: lat, lng: lng };
-      map.setCenter(pos);
-      new google.maps.Marker({ position: pos, map: map, title: title });
-      return;
-    }
-
-    // なければ住所から1回だけジオコーディング
-    if (address.length > 0) {
-      const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ address: address }, (results, status) => {
-        if (status === "OK" && results[0]) {
-          const loc = results[0].geometry.location;
-          map.setCenter(loc);
-          new google.maps.Marker({ position: loc, map: map, title: title });
-        } else {
-          console.warn("Geocode failed:", status);
-        }
-      });
-    }
-  }
-
-  // Turboを使ってるならこれも
-  document.addEventListener("turbo:load", initMap);
-  // Google Maps callback 用
-  window.initMap = initMap;
-</script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
--->
