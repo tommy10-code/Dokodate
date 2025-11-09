@@ -43,7 +43,6 @@ document.addEventListener("turbo:load", async () => {
 
   // 一度マーカーの情報を削除して、新しくマーカーを描写
   const updateMarkers = (shops) => {
-    console.log(shops);
     clearMarkers();
     (shops || []).forEach(s => {
       const m = createShopMarker(s);
@@ -53,11 +52,9 @@ document.addEventListener("turbo:load", async () => {
 
   // Railsからshopデータを取得,updateMarkersの関数実行
   const loadShops = (url) => {
-    console.log(url);
     fetch(url, { headers: { Accept: "application/json" } })
       .then(r => r.json())
       .then(data => {
-        console.log(data);
         updateMarkers(data);
       })
       .catch(e => console.error("[shops fetch error]:", e));
@@ -68,7 +65,6 @@ document.addEventListener("turbo:load", async () => {
   // 現在地マーカーの取得
     navigator.geolocation.getCurrentPosition(
       pos => {
-        console.log(pos)
         new Marker({
         position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
         map,

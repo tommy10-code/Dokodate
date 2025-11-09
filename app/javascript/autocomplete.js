@@ -1,6 +1,5 @@
 document.addEventListener("turbo:load", async () => {
   const shopTitleInput = document.getElementById('shop_title_autocomplete');
-  console.log(shopTitleInput);
   if (!shopTitleInput) return;
 
   const autocomplete = new google.maps.places.Autocomplete(shopTitleInput, {
@@ -16,7 +15,6 @@ document.addEventListener("turbo:load", async () => {
 
   autocomplete.addListener('place_changed', () => {
     const place = autocomplete.getPlace();
-    console.log("取得されたplace:", place);
 
     if (!place) return;
     shopTitleInput.value = place.name || "";
