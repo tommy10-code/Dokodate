@@ -6,7 +6,7 @@ export default class extends Controller {
 
   update() {
     const length = this.inputTarget.value.length
-    
+
     if ( length < this.minValue) {
       this.outputTarget.textContent = `あと ${this.minValue - length} 文字必要です`
       //this.outputTarget.classList.add("text-red-600")

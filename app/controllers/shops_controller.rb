@@ -23,10 +23,20 @@ class ShopsController < ApplicationController
   end
 
   def autocomplete
-    q = params[:q].to_s
-    @shops = Shop.where("title ILIKE :q OR address ILIKE :q", q: "#{q}%").limit(5)
-    render partial: "shops/autocomplete"
+    keyword = params[:keyword].to_s.strip
+    return render json: [] if keyword.blank?
+
+    items = Shop
+      .where("title ILIKE :q OR address ILIKE :q", q: "%#{keyword}%")
+      .order(:title)
+      .limit(5)
+      .pluck(:id, :title, :address)
+
+    render json: items.map { |id, title, address|
+      { id: id, title: title, address: address }
+    }
   end
+
 
   def show
     @shop = Shop.find(params[:id])
