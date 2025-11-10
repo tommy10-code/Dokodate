@@ -29,7 +29,7 @@ class ShopsController < ApplicationController
     items = Shop
       .where("title ILIKE :q OR address ILIKE :q", q: "%#{keyword}%")
       .order(:title)
-      .limit(10)
+      .limit(5)
       .pluck(:id, :title, :address)
 
     render json: items.map { |id, title, address|

@@ -5,6 +5,10 @@ export default class extends Controller {
   static values = { url: String }
 
   connect(){
+
+  document.addEventListener("click", (e) => {
+    console.log(e)
+  })
     console.log("オートコンプリート確認")
   }
 
@@ -28,7 +32,7 @@ export default class extends Controller {
 
     items.forEach(item => {
       const li = document.createElement("li")
-      li.className = "px-3 py-2 hover:bg-gray-100 cursor-pointer"
+      li.className = "px-3 py-2 hover:bg-blue-100 cursor-pointer whitespace-nowrap overflow-hidden text-ellipsis"
       li.textContent = item.title
       li.addEventListener("click", () => this.choose(item))
       frag.appendChild(li)
@@ -47,7 +51,3 @@ export default class extends Controller {
     this.resultsTarget.innerHTML = ""
   }
 }
-
-
-
-
