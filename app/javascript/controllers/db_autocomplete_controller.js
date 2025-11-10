@@ -5,11 +5,21 @@ export default class extends Controller {
   static values = { url: String }
 
   connect(){
-
-  document.addEventListener("click", (e) => {
-    console.log(e)
-  })
-    console.log("オートコンプリート確認")
+    this.onDoClick = (e) => {
+      if (!this.element.contains(e.target)) {
+        this.closeResults()
+      }
+    }
+    document.addEventListener('click', this.onDoClick)
+  }
+  disconnect() {
+    document.removeEventListener("click", this.onDocClick)
+  }
+  openResults() {
+    this.resultsTarget.classList.remove('hidden')
+  }
+  closeResults() {
+    this.resultsTarget.classList.add('hidden')
   }
 
   onInput() {
