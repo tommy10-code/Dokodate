@@ -5,8 +5,10 @@ export default class extends Controller {
   static values = { url: String }
 
   connect(){
+    console.log("connect: this.element =", this.element)
     this.onDoClick = (e) => {
       if (!this.element.contains(e.target)) {
+        console.log("e.target =", e.target)
         this.closeResults()
       }
     }
