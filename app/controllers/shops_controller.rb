@@ -27,12 +27,12 @@ class ShopsController < ApplicationController
     return render json: [] if keyword.blank?
 
     items = Shop
-      .where("title ILIKE :q OR address ILIKE :q", q: "%#{keyword}%")
+      .where("title ILIKE :q", q: "%#{keyword}%")
       .order(:title)
       .limit(5)
       .pluck(:id, :title, :address)
 
-    render json: items.map { |id, title, address|
+      render json: items.map { |id, title, address|
       { id: id, title: title, address: address }
     }
   end
