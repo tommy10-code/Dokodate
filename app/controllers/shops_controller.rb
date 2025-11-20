@@ -3,14 +3,7 @@ class ShopsController < ApplicationController
 
   def index
     @q = Shop.ransack(params[:q])
-    scope = @q.result.includes(:category, :scenes).order(created_at: :desc)
-
-    # #ログイン中のユーザーがお気に入り登録したShopだけ取得
-    if params[:favorited].present? && current_user
-      scope = scope.favorited_by(current_user.id)
-    end
-
-    @shops = scope
+    @shops = @q.result.includes(:category, :scenes).order(created_at: :desc)
 
     respond_to do |format|
     format.html

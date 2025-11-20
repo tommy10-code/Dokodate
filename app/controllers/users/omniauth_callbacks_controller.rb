@@ -3,6 +3,7 @@ class Users::OmniauthCallbacksController < ApplicationController
       auth = request.env["omniauth.auth"]
       @user = Users::FindOrCreateFromOmniauth.call(auth: auth)
 
+    # この@userがDBに存在しているレコードか？
     if @user.persisted?
       sign_in @user, event: :authentication
       redirect_to shops_path, notice: "Googleアカウントでログインしました"

@@ -2,9 +2,9 @@ class Shop < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  belongs_to :user, optional: true
+  belongs_to :user
   has_many :favorites, dependent: :destroy
-  has_many :favorites_users, through: :favorites
+  has_many :favorite_users, through: :favorites, source: :user
 
   scope :favorited_by, ->(user_id) {
     joins(:favorites).where(favorites: { user_id: user_id }).distinct
