@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resource :favorites, only: [ :create, :destroy ]
     collection { get :autocomplete }
   end
-  get "/favorites", to: "users#favorite"
+  resources :favorites, only: [ :index ]
   get "/mail_test", to: "mail_test#send_mail"
   resource :onboarding, only: [ :update ]
 

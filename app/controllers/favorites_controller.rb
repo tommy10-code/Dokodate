@@ -2,9 +2,18 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_shop, only: [ :create, :destroy ]
 
-  def favorite
-    @favorite_shops = current_user.favorite_shops
+  def index
+    @q = current_user.favorite_shops.ransack(params[:q])
+    @favorite_shops = @q.result
+
+    if params[:favorited].present? && current_user
+      @favorite_shops = @favorite_shops.favorited_by(current_user.id)
+    end
   end
+
+  # def favorite
+  #   @favorite_shops = current_user.favorite_shops
+  # end
 
   def create
     current_user.favorite(@shop)

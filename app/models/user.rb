@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   has_many :shops
   has_many :favorites, dependent: :destroy
-  has_many :favorites_shops, through: :favorites
+  has_many :favorite_shops, through: :favorites,  source: :shop
 
   validates :name, presence: true, on: :create
 
