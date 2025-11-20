@@ -59,7 +59,7 @@ document.addEventListener("turbo:load", async () => {
       })
       .catch(e => console.error("[shops fetch error]:", e));
   }
-  // urlを作成して、loadShopsの関数を実行
+  // 2つのリクエスト先url作成してloadShopsの関数を実行
   const basePath = window.location.pathname;
   const url = basePath + ".json" + window.location.search;
   console.log("basePath:", basePath);
