@@ -6,14 +6,14 @@ class FavoritesController < ApplicationController
     @q = current_user.favorite_shops.ransack(params[:q])
     @favorite_shops = @q.result
 
-    if params[:favorited].present? && current_user
-      @favorite_shops = @favorite_shops.favorited_by(current_user.id)
+    respond_to do |format|
+      format.html
+      format.json { render json: @favorite_shops.to_json(
+        only: [ :id, :title, :address, :latitude, :longitude ],
+        methods: [ :category_name, :scenes_name ]
+        )}
     end
   end
-
-  # def favorite
-  #   @favorite_shops = current_user.favorite_shops
-  # end
 
   def create
     current_user.favorite(@shop)

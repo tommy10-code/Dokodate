@@ -52,15 +52,17 @@ document.addEventListener("turbo:load", async () => {
 
   // Railsからshopデータを取得,updateMarkersの関数実行
   const loadShops = (url) => {
-    fetch(url, { headers: { Accept: "application/json" } })
+    fetch(url)
       .then(r => r.json())
       .then(data => {
         updateMarkers(data);
       })
       .catch(e => console.error("[shops fetch error]:", e));
   }
-  // loadShopsの関数を実行
-  loadShops("/shops.json" + window.location.search);
+  // urlを作成して、loadShopsの関数を実行
+  const basePath = window.location.pathname;
+  const url = basePath + ".json" + window.location.search;
+  loadShops(url);
 
   // 現在地マーカーの取得
     navigator.geolocation.getCurrentPosition(
