@@ -62,6 +62,8 @@ document.addEventListener("turbo:load", async () => {
   // urlを作成して、loadShopsの関数を実行
   const basePath = window.location.pathname;
   const url = basePath + ".json" + window.location.search;
+  console.log("basePath:", basePath);
+  console.log("fetch url:", url);
   loadShops(url);
 
   // 現在地マーカーの取得
