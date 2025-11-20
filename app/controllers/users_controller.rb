@@ -8,6 +8,5 @@ class UsersController < ApplicationController
     if params[:favorited].present? && current_user
       @favorite_shops = @favorite_shops.favorited_by(current_user.id)
     end
-
   end
 end

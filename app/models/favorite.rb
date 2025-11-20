@@ -13,5 +13,4 @@ class Favorite < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
   %w[scenes shop_scenes category]
   end
-
 end
