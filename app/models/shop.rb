@@ -17,7 +17,6 @@ class Shop < ApplicationRecord
 
   validates :title, presence: true
   validates :address, presence: true
-  validates :category_id, presence: true
   validate :scenes_count_within_limit
 
   # jsにカテゴリー名を呼ぶためのこのメソッドが呼び出される
@@ -26,8 +25,7 @@ class Shop < ApplicationRecord
   end
 
   def scenes_name
-    scenes.first ? scenes.first.name : "シーン未設定"
-    scenes.first&.name || "シーン未設定"
+    scenes.present? ? scenes.map(&:name).join(" / ") : "シーン未設定"
   end
 
   def self.ransackable_attributes(auth_object = nil)
@@ -41,6 +39,7 @@ class Shop < ApplicationRecord
   private
   def scenes_count_within_limit
     ids = Array(scene_ids).reject(&:blank?)
+    binding.pry
     if ids.size > 2
       errors.add(:scenes, "は2つまで選択できます")
     end

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  dismiss() {
+    dismiss() {
     const checkbox = document.getElementById("hideBannerCheckbox");
     if ( checkbox?.checked ) {
         fetch("/onboarding", {

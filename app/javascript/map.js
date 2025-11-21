@@ -23,8 +23,8 @@ document.addEventListener("turbo:load", async () => {
       content: `
         <div class="p-3">
           <h3 class="mb-2 text-gray-800 text-sm font-bold">${shop.title}</h3>
-          <div class="mb-1 text-xs text-gray-600">カテゴリ：${shop.category_name ?? ""}</div>
-          <div class="mb-3 text-xs text-gray-600">シーン：${shop.scenes_name ?? ""}</div>
+          <div class="mb-1 text-xs text-gray-600">カテゴリ：${shop.category_name}</div>
+          <div class="mb-3 text-xs text-gray-600">シーン：${shop.scenes_name}</div>
           <button onclick="window.open('https://www.google.com/search?q=${encodeURIComponent(shop.title)}','_blank')"
                   class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded text-xs w-full">
             Googleで検索
