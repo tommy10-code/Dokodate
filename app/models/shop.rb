@@ -39,7 +39,6 @@ class Shop < ApplicationRecord
   private
   def scenes_count_within_limit
     ids = Array(scene_ids).reject(&:blank?)
-    binding.pry
     if ids.size > 2
       errors.add(:scenes, "は2つまで選択できます")
     end
