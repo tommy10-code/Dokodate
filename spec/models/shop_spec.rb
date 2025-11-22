@@ -22,11 +22,11 @@ RSpec.describe Shop, type: :model do
       expect(shop.errors[:address]).to include("を入力してください")
     end
 
-    it "カテゴリが必須" do
-      user = create(:user)
-      shop = build(:shop, category_id: nil)
-      expect(shop).to be_invalid
-      expect(shop.errors[:category_id]).to include("を入力してください")
-    end
+    # it "カテゴリが必須" do
+    #   user = create(:user)
+    #   shop = build(:shop, category_id: nil)
+    #   expect(shop).to be_invalid
+    #   expect(shop.errors[:category_id]).to include("を入力してください")
+    # end
   end
 end

@@ -18,6 +18,8 @@ class Shop < ApplicationRecord
   validates :title, presence: true
   validates :address, presence: true
   validate :scenes_count_within_limit
+  # validates :category, presence: true
+
 
   # jsにカテゴリー名を呼ぶためのこのメソッドが呼び出される
   def category_name
