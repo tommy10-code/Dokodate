@@ -17,8 +17,9 @@ class Shop < ApplicationRecord
 
   validates :title, presence: true
   validates :address, presence: true
-  validates :category_id, presence: true
   validate :scenes_count_within_limit
+  # validates :category, presence: true
+
 
   # jsにカテゴリー名を呼ぶためのこのメソッドが呼び出される
   def category_name
@@ -26,8 +27,7 @@ class Shop < ApplicationRecord
   end
 
   def scenes_name
-    scenes.first ? scenes.first.name : "シーン未設定"
-    scenes.first&.name || "シーン未設定"
+    scenes.present? ? scenes.map(&:name).join(" / ") : "シーン未設定"
   end
 
   def self.ransackable_attributes(auth_object = nil)

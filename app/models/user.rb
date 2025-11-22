@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  after_create :send_welcome_email
-
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable,
           :omniauthable, omniauth_providers: [ :google_oauth2 ]
@@ -22,11 +20,5 @@ class User < ApplicationRecord
 
   def favorite?(shop)
     favorites.exists?(shop_id: shop.id)
-  end
-
-  private
-
-  def send_welcome_email
-    UserMailer.welcome_email(self).deliver_later
   end
 end

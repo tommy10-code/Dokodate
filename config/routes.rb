@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get "/terms", to: "home#terms"
   get "privacy", to: "home#privacy"
 
-  resources :users, only: [ :index, :show ]
   resources :shops  do
     resource :favorites, only: [ :create, :destroy ]
     collection { get :autocomplete }
