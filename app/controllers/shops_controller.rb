@@ -1,5 +1,6 @@
 class ShopsController < ApplicationController
   before_action :authenticate_user!, except: [ :index, :show, :create, :new ]
+  before_action :set_shop, only: %i[ edit update destroy ]
 
   def index
     @q = Shop.ransack(params[:q])
@@ -30,7 +31,6 @@ class ShopsController < ApplicationController
     }
   end
 
-
   def show
     @shop = Shop.find(params[:id])
   end
@@ -49,26 +49,38 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @shop = current_user.shops.find(params[:id])
   end
 
   def update
-    @shop = current_user.shops.find(params[:id])
-
     if @shop.update(shop_params)
-      redirect_to shop_path(@shop), notice: "お店を更新しました"
+      redirect_to shop_path(@shop), notice: "お店を更新しました", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
- def destroy
-    @shop = current_user.shops.find(params[:id])
-    @shop.destroy
+  def destroy
+    if @shop.destroy
       redirect_to shops_path, status: :see_other, notice: "お店を削除しました"
+    else
+	    redirect_to shop_path(@shop), alert: "削除できませんでした", status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @shop.destroy
+      redirect_to shops_path, status: :see_other, notice: "お店を削除しました"
+    else
+      redirect_to @shop, status: :unprocessable_entity, alert: "削除できませんでした"
+    end
   end
 
   private
+
+  def set_shop
+    @shop = current_user.shops.find(params[:id])
+  end
+
   def shop_params
     params.require(:shop).permit(:title, :address, :latitude, :longitude, :category_id, :page, images: [], scene_ids: [])
   end
