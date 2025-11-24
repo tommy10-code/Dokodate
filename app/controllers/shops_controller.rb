@@ -63,7 +63,7 @@ class ShopsController < ApplicationController
     if @shop.destroy
       redirect_to shops_path, status: :see_other, notice: "お店を削除しました"
     else
-	    redirect_to shop_path(@shop), alert: "削除できませんでした", status: :unprocessable_entity
+      redirect_to shop_path(@shop), alert: "削除できませんでした", status: :unprocessable_entity
     end
   end
 
