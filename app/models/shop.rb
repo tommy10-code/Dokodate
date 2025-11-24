@@ -6,9 +6,9 @@ class Shop < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
 
-  scope :favorited_by, ->(user_id) {
-    joins(:favorites).where(favorites: { user_id: user_id }).distinct
-  }
+  # scope :favorited_by, ->(user_id) {
+  #   joins(:favorites).where(favorites: { user_id: user_id }).distinct
+  # }
 
   belongs_to :category, optional: true
   has_many :shop_scenes, dependent: :destroy
