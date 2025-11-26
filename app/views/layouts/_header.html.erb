@@ -31,10 +31,10 @@
       <%= link_to "お店一覧 >", shops_path, class: "text-xl py-4 px-6 rounded-xl bg-amber-500 text-white font-bold hover:bg-amber-600", data: { turbo: false } %>
       <%= link_to "お気に入り >", favorites_path, class: "text-xl text-amber-400 hover:text-amber-500", data: { turbo: false } %>
       <%= link_to "お店投稿 >", new_shop_path	, class: "text-xl text-amber-400 hover:text-amber-500" %>
-      <%= link_to "デート診断 >", diagnoses_new_path	, class: "text-xl text-amber-400 hover:text-amber-500" %>
+      <%= link_to "デート診断 >", new_diagnosis_path, class: "text-xl text-amber-400 hover:text-amber-500" %>
       <%= link_to "ログアウト >", destroy_user_session_path, class: "text-xl text-amber-400 hover:text-amber-500",  data: { turbo_method: :delete}  %>
     <% else %>
-      <%= link_to "デート診断 >", diagnoses_new_path	, class: "text-xl text-amber-400 hover:text-amber-500 " %>
+      <%= link_to "デート診断 >", new_diagnosis_path, class: "text-xl text-amber-400 hover:text-amber-500 " %>
       <%= link_to "ログイン >", new_user_session_path, class: "text-xl text-amber-400 hover:text-amber-500" %>
       <%= link_to "会員登録", new_user_registration_path, class: "text-xl py-4 px-6 rounded-xl bg-amber-500 text-white font-bold hover:bg-amber-600" %>
     <% end %>
@@ -45,7 +45,7 @@
 <nav id="mobile-menu" class="hidden bg-white px-6 py-4 space-y-3">
   <ul class="flex flex-col gap-2 p-2">
     <!-- 共通 -->
-    <li><%= link_to "デート診断 >", diagnoses_new_path, class: "text-amber-500 hover:text-amber-600 font-bold" %></li>
+    <li><%= link_to "デート診断 >", new_diagnosis_path, class: "text-amber-500 hover:text-amber-600 font-bold" %></li>
 
     <% if user_signed_in? %>
       <li><%= link_to "お店一覧 >", shops_path, class: "text-amber-500 hover:text-amber-600 font-bold", data: { turbo: false } %></li>

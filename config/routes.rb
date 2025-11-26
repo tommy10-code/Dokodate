@@ -22,8 +22,9 @@ Rails.application.routes.draw do
     root to: "home#index"
   end
 
-  get "diagnoses/new"
-  post "diagnoses/result", to: "diagnoses#result"
+  resources :diagnoses, only: [ :new ] do
+    collection { post :result }
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
