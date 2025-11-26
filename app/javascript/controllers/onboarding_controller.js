@@ -4,6 +4,7 @@ export default class extends Controller {
     dismiss() {
     const checkbox = document.getElementById("hideBannerCheckbox");
     if ( checkbox?.checked ) {
+        console.log("close called!!")
         fetch("/onboarding", {
         method: "PATCH",
         headers: {
@@ -13,6 +14,6 @@ export default class extends Controller {
         body: JSON.stringify({ hide_onboarding_banner: true })
     });
   }
-  // this.element.remove();
+  this.element.remove();
   }
 }
