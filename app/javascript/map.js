@@ -72,7 +72,6 @@ document.addEventListener("turbo:load", async () => {
         new Marker({
         position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
         map,
-        // 旧Markerアイコン指定（AdvancedMarker化は後で対応でもOK）
         icon: { url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png" }
         });
       },
