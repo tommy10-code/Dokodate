@@ -24,6 +24,7 @@ export default class extends Controller {
     this.resultsTarget.classList.add('hidden')
   }
 
+  //入力からurlを作成して検索条件をリクエスト
   onInput() {
     const q = this.inputTarget.value.trim()
     if (q.length === 0) return
@@ -38,6 +39,7 @@ export default class extends Controller {
       .catch((error) => { console.log("catch error:", error) })
   }
 
+  //検索候補を表示 li要素を作成
   renderList(items) {
     this.resultsTarget.innerHTML = ""
     if (!items || items.length === 0) return
@@ -53,6 +55,7 @@ export default class extends Controller {
     this.resultsTarget.appendChild(frag)
   }
 
+  //入力欄に店名を表示
   choose(item) {
     this.inputTarget.value = item.title
   }
