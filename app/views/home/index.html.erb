@@ -3,6 +3,8 @@
   <div class="w-full max-w-4xl mx-auto px-6 text-center mt-10 mb-15">
     <%= image_tag "logo.png", alt: "ロゴ画像", class: "h-14 mx-auto" %>
 
+    <%= button_to "ゲストログイン" , guest_login_path, method: :post %>
+
       <!-- <picture> を使ってスマホ用とPC用の画像を切替、PC用はmob付かない hero1.png -->
     <div class="mt-8 relative rounded-2xl overflow-hidden shadow-xl slideshow h-[50vh]">
       <picture>
