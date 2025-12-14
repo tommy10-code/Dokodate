@@ -3,6 +3,8 @@
   <div class="w-full max-w-4xl mx-auto px-6 text-center mt-10 mb-15">
     <%= image_tag "logo.png", alt: "ロゴ画像", class: "h-14 mx-auto" %>
 
+    <%= button_to "ゲスト  ログイン" , guest_login_path, method: :post, class: "w-full bg-white border border-gray-600 rounded px-4 py-2 mt-4 text-lg hover:bg-amber-500 cursor-pointer font-extrabold leading-normal" %>
+
       <!-- <picture> を使ってスマホ用とPC用の画像を切替、PC用はmob付かない hero1.png -->
     <div class="mt-8 relative rounded-2xl overflow-hidden shadow-xl slideshow h-[50vh]">
       <picture>
@@ -27,7 +29,7 @@
       ※ご利用には会員登録が必要です
     </p>
     <div class="mb-4">
-      <%= link_to "会員登録", new_user_registration_path,
+      <%= link_to "会  員  登  録", new_user_registration_path,
         class: "block text-xl md:text-2xl px-1 md:px-12 py-4 md:py-5 rounded-xl bg-amber-500 text-white font-bold hover:bg-amber-600 transition shadow-md" %>
     </div>
   </div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   }
   get "/terms", to: "home#terms"
   get "privacy", to: "home#privacy"
+  post "guest_login", to: "home#guest_login"
 
   resources :shops  do
     resource :favorites, only: [ :create, :destroy ]
